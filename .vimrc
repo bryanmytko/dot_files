@@ -8,7 +8,14 @@ set number
 set tabstop=2
 set shiftwidth=2
 set smartindent
+set autoindent
 set expandtab
+
+" Turn off vi compatibility
+set nocompatible
+
+" load indent file for the current filetype
+filetype indent on
 
 set list listchars=tab:>-,trail:•,precedes:<,extends:>
 
