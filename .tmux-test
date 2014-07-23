@@ -1,0 +1,16 @@
+tmux rename-window 'Vim'
+tmux send-keys 'cd ~/project_directory' Enter
+tmux send-keys 'vim .' Enter
+tmux split-window -v
+tmux resize-pane -D 200
+
+tmux new-window
+tmux select-window -t :1
+tmux split-window -h
+tmux send-keys 'cd ~/project_directory' Enter
+tmux rename-window 'Terminals'
+
+;etc for n windows
+
+;select first window
+tmux select-window -t :0
