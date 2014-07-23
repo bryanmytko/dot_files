@@ -10,6 +10,9 @@ set shiftwidth=2
 set smartindent
 set autoindent
 set expandtab
+set colorcolumn=80
+
+:imap jj <ESC>
 
 " Turn off vi compatibility
 set nocompatible
