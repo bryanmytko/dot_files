@@ -1,4 +1,4 @@
-<p>My Dot Files</p>
+<p>My dot files.</p>
 <p>In case I ever get lost in the woods without my laptop.</p>
 <pre>
                __..-----')
