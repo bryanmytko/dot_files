@@ -1,5 +1,5 @@
-<h1>My Dot Files<h1>
-<h2>In case I ever get lost in the woods without my laptop.</h2>
+<p>My Dot Files</p>
+<p>In case I ever get lost in the woods without my laptop.</p>
 <pre>
                __..-----')
         ,.--._ .-'_..--...-'
