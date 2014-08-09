@@ -1,3 +1,22 @@
+" Turn off vi compatibility
+set nocompatible
+
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-rails.git'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kien/ctrlp.vim'
+Plugin 'skalnik/vim-vroom'
+Plugin 'tpope/vim-dispatch'
+
+call vundle#end()
+filetype plugin indent on
+
 set t_Co=256
 syntax on
 set background=dark
@@ -14,8 +33,7 @@ set colorcolumn=80
 
 :imap jj <ESC>
 
-" Turn off vi compatibility
-set nocompatible
+let mapleader=","
 
 " load indent file for the current filetype
 filetype indent on
