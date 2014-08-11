@@ -18,3 +18,7 @@ tmuxc(){
     echo "There ain't no config file for $1."
   fi
 }
+
+## Prompt
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+PS1="\[\e[1;33m\]\w\[\e[0;39m\]\n\[\e[1;32m\]\u\[\e[0;39m\]\[\e[0;39m\]\e[1;35m\]$(__git_ps1 " (%s)")\[\e[0;39m\]\[\e[0;39m\] "
