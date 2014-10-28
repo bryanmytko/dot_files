@@ -19,6 +19,18 @@ Plugin 'vim-ruby/vim-ruby'
 " TComment
 Plugin 'tComment'
 
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 call vundle#end()
 filetype plugin indent on
 
@@ -54,16 +66,19 @@ highlight clear SignColumn
 highlight VertSplit    ctermbg=236
 highlight ColorColumn  ctermbg=237
 highlight LineNr       ctermbg=236 ctermfg=240
-highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLine   ctermbg=236
 highlight StatusLineNC ctermbg=238 ctermfg=0
 highlight StatusLine   ctermbg=240 ctermfg=232
-" highlight IncSearch    ctermbg=240   ctermfg=232
-" highlight Search       ctermbg=240   ctermfg=232
 highlight Visual       ctermbg=240   ctermfg=0
 highlight Pmenu        ctermbg=240 ctermfg=12
 highlight PmenuSel     ctermbg=3   ctermfg=1
 highlight SpellBad     ctermbg=0   ctermfg=1
+
+highlight Cursor guifg=white guibg=black
+highlight iCursor guifg=white guibg=steelblue
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
 
 " first, enable status line always
 set laststatus=2
