@@ -2,6 +2,8 @@ alias tmuxn='tmux new-session -s'
 alias tmuxc=tmuxc
 alias pgstart='postgres -D /usr/local/var/postgres'
 
+# alias vim='/usr/local/Cellar/vim/7.4.430/bin/vim'
+
 alias bx='bundle exec'
 alias g='git'
 alias gaa='g add -A'
@@ -15,6 +17,9 @@ alias rc='rails console'
 alias rs='rails server'
 alias bi='bundle install'
 alias v='vim'
+alias mysqlstart='mysql.server start'
+
+alias dcheck='grep debugger -ri'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
