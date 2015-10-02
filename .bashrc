@@ -21,8 +21,6 @@ alias mysqlstart='mysql.server start'
 
 alias dcheck='grep debugger -ri'
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 tmuxc(){
   if [ -z "$1" ]
     then
@@ -40,3 +38,10 @@ tmuxc(){
 ## Prompt
 source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 PS1='\[\e[1;33m\]\w\[\e[0;39m\]\n\[\e[1;32m\]\u\[\e[0;39m\]\[\e[0;39m\]\e[1;35m\]$(__git_ps1 " (%s)")\[\e[0;39m\]\[\e[0;39m\] '
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/bin"
+export PATH="/usr/bin:/bin"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
