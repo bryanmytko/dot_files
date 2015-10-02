@@ -1,37 +1,29 @@
 " Turn off vi compatibility
 set nocompatible
 
-" Vundle
+" Vundle ----
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Vundle
 Plugin 'gmarik/Vundle.vim'
-" Vroom (Rspec)
-Plugin 'skalnik/vim-vroom'
-" Ctrl P (Fuzzy Finder)
-Plugin 'kien/ctrlp.vim'
-" Vim Rails
-Plugin 'tpope/vim-rails.git'
-" Vim Ruby
+
+" Language specific
 Plugin 'vim-ruby/vim-ruby'
-" TComment
+Plugin 'rust-lang/rust.vim'
+
+Plugin 'tpope/vim-rails.git'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'skalnik/vim-vroom'
+Plugin 'kien/ctrlp.vim'
 Plugin 'tComment'
-
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
+" ---- Vundle
+
 filetype plugin indent on
 
 " Basic visual settings
@@ -54,9 +46,10 @@ set list listchars=tab:>-,trail:•,precedes:<,extends:>
 " Railscast theme
 colorscheme railscasts
 
-" Big remaps
+" remaps
 let mapleader = ','
 :imap jj <ESC>
+:imap bbb binding.pry
 
 " load indent file for the current filetype
 " filetype indent on
@@ -86,6 +79,18 @@ if version >= 700
   au InsertEnter * hi StatusLine ctermfg=226 ctermbg=232
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=232
 endif
+
+set clipboard=unnamed
+set backspace=2 " make backspace work like most other apps
+
+:noremap <leader>gg y:Ggrep <c-r>"<cr>"
+:noremap <leader><Space> zf
+:noremap <leader>j 10j
+:noremap <leader>k 10k
+
+set foldenable
+set foldmethod=manual
+set foldlevel=1
 
 " ridiculous macro for formatting Ruby hashes
 :nnoremap <leader>fh $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
