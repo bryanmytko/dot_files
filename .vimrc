@@ -1,4 +1,4 @@
-" Turn off vi compatibility
+"Turn off vi compatibility
 set nocompatible
 
 " Vundle
@@ -18,21 +18,17 @@ Plugin 'tpope/vim-rails.git'
 Plugin 'vim-ruby/vim-ruby'
 " TComment
 Plugin 'tComment'
-
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" Arduino
+Plugin 'jplaut/vim-arduino-ino'
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 filetype plugin indent on
+
+let g:vim_markdown_folding_disabled=1
+:set syntax=markdown
 
 " Basic visual settings
 set t_Co=256
@@ -87,5 +83,8 @@ if version >= 700
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=232
 endif
 
-" ridiculous macro for formatting Ruby hashes
-:nnoremap <leader>fh $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
+" Open Arduino Serial Monitor
+let g:vim_arduino_auto_open_serial = 1
+
+" Arduino Syntax
+autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
