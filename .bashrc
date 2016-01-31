@@ -300,6 +300,8 @@ alias tmuxn='tmux new-session -s'
 alias tmuxc=tmuxc
 alias pgstart='postgres -D /usr/local/var/postgres'
 
+# alias vim='/usr/local/Cellar/vim/7.4.430/bin/vim'
+
 alias bx='bundle exec'
 alias g='git'
 alias gaa='g add -A'
@@ -313,9 +315,13 @@ alias rc='rails console'
 alias rs='rails server'
 alias bi='bundle install'
 alias v='vim'
+<<<<<<< HEAD
 alias zoolander='cd ~/code/zoolander'
+=======
+alias mysqlstart='mysql.server start'
+>>>>>>> 6a2743205a945dbf8f81557f2ebdd9642ae4702d
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+alias dcheck='grep debugger -ri'
 
 tmuxc(){
   if [ -z "$1" ]
@@ -335,11 +341,13 @@ export PATH=/usr/local/bin/npm:$PATH
 export PATH=/Users/bryan/.node/bin:$PATH
 
 ## Prompt
-# PS1="$ "
-# source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 
 source ~/.git-prompt/git-prompt.sh
 PS1='\[\e[1;33m\]\w\[\e[0;39m\]\n\[\e[1;32m\]\u\[\e[0;39m\]\[\e[0;39m\]\[\e[1;35m\]$(__git_ps1 " (%s)")\[\e[0;39m\]\[\e[0;39m\] '
 
-# PATH="/usr/local/share/npm/bin:$PATH"                      # NPM
-# export PATH=/usr/local/share/npm/bin:$PATH
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/bin"
+export PATH="/usr/bin:/bin"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
