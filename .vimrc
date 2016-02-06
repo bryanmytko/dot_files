@@ -46,6 +46,8 @@ map <Leader>i mmgg=G`m " indent, wow
 map <Leader>sc :sp db/schema.rb<cr>
 nmap <Leader>s :source ~/.vimrc<cr>
 
+nnoremap <leader>p :set invpaste paste?<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rename Current File (thanks Gary Bernhardt)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -118,9 +120,6 @@ if version >= 700
   au InsertEnter * hi StatusLine ctermfg=226 ctermbg=232
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=232
 endif
-
-" Paste-mode toggle
-nnoremap <leader>p :set invpaste paste?<CR>
 
 " $ lsof -wni tcp:3000
 " $ kill -9 PID
