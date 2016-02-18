@@ -13,10 +13,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'skalnik/vim-vroom'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-rails.git'
+
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails.git'
+Plugin 'rust-lang/rust.vim'
+
+Plugin 'kien/ctrlp.vim'
+Plugin 'skalnik/vim-vroom'
 Plugin 'tComment'
 Plugin 'godlygeek/tabular'
 
@@ -44,9 +47,9 @@ map <Leader>sa mmggVG"*y`m " select all
 map <Leader>f :call OpenFactoryFile()<CR>
 map <Leader>i mmgg=G`m " indent, wow
 map <Leader>sc :sp db/schema.rb<cr>
+map <Leader>cb :!cargo build<cr>
+map <Leader>cr :!cargo run<cr>
 nmap <Leader>s :source ~/.vimrc<cr>
-
-nnoremap <leader>p :set invpaste paste?<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rename Current File (thanks Gary Bernhardt)
@@ -120,6 +123,9 @@ if version >= 700
   au InsertEnter * hi StatusLine ctermfg=226 ctermbg=232
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=232
 endif
+
+" Paste-mode toggle
+nnoremap <leader>p :set invpaste paste?<CR>
 
 " $ lsof -wni tcp:3000
 " $ kill -9 PID
