@@ -23,6 +23,9 @@ Plugin 'skalnik/vim-vroom'
 Plugin 'tComment'
 Plugin 'godlygeek/tabular'
 
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -49,6 +52,7 @@ map <Leader>i mmgg=G`m " indent, wow
 map <Leader>sc :sp db/schema.rb<cr>
 map <Leader>cb :!cargo build<cr>
 map <Leader>cr :!cargo run<cr>
+map <Leader>mr :!mocha<cr>
 nmap <Leader>s :source ~/.vimrc<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
