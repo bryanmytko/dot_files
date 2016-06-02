@@ -14,23 +14,17 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-" Ruby
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails.git'
-Plugin 'skalnik/vim-vroom'
-
-" Rust
 Plugin 'rust-lang/rust.vim'
 
-" Javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-
-" Utility
 Plugin 'kien/ctrlp.vim'
+Plugin 'skalnik/vim-vroom'
 Plugin 'tComment'
 Plugin 'godlygeek/tabular'
 
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 filetype plugin indent on
