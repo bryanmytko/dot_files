@@ -146,9 +146,6 @@ alias show_files="defaults write com.apple.finder AppleShowAllFiles TRUE && kill
 # Application Aliases
 # ================
 
-# Sublime should be symlinked. Otherwise use one of these
-# alias subl='open -a "Sublime Text"'
-# alias subl='open -a "Sublime Text 2"'
 alias chrome='open -a "Google Chrome"'
 
 # =================
@@ -249,18 +246,6 @@ rogue() {
     echo
   fi
 }
-
-# =================
-# Tab Improvements
-# =================
-
-## PJ: Might not need?
-
-## Tab improvements
-# bind 'set completion-ignore-case on'
-# # make completions appear immediately after pressing TAB once
-# bind 'set show-all-if-ambiguous on'
-# bind 'TAB: menu-complete'
 
 # =================
 # Sourced Scripts

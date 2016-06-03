@@ -1,5 +1,5 @@
 " ========================================================================
-" I took half of this from Ben Orenstein (https://github.com/r00k/dotfiles)
+" I took some of this from Ben Orenstein (https://github.com/r00k/dotfiles)
 " ========================================================================
 
 " ========================================================================
