@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails.git'
 Plugin 'rust-lang/rust.vim'
+Plugin 'elixir-lang/vim-elixir'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'skalnik/vim-vroom'
