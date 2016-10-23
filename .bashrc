@@ -146,6 +146,9 @@ alias show_files="defaults write com.apple.finder AppleShowAllFiles TRUE && kill
 # Application Aliases
 # ================
 
+# Sublime should be symlinked. Otherwise use one of these
+# alias subl='open -a "Sublime Text"'
+# alias subl='open -a "Sublime Text 2"'
 alias chrome='open -a "Google Chrome"'
 
 # =================
@@ -248,6 +251,18 @@ rogue() {
 }
 
 # =================
+# Tab Improvements
+# =================
+
+## PJ: Might not need?
+
+## Tab improvements
+# bind 'set completion-ignore-case on'
+# # make completions appear immediately after pressing TAB once
+# bind 'set show-all-if-ambiguous on'
+# bind 'TAB: menu-complete'
+
+# =================
 # Sourced Scripts
 # =================
 
@@ -298,13 +313,18 @@ alias rc='rails console'
 alias rs='rails server'
 alias bi='bundle install'
 alias v='vim'
-alias zoolander='cd ~/code/zoolander'
 alias droplet='ssh root@162.243.252.129'
+alias mtadroplet='ssh root@107.170.93.236'
 alias rustdir='cd ~/Projects/Rust'
 alias rubydir='cd ~/Projects/Ruby'
 alias railsdir='cd ~/Projects/Ruby/rails'
 alias jsdir='cd ~/Projects/Javascript'
 alias rustnightly='multirust update nightly'
+
+alias shortstack='cd ~/Code/wdi/shortstack'
+alias pango='cd ~/Code/wdi/pangolins'
+alias xfiles='cd ~/Code/wdi/xfiles'
+alias mss='sudo mysql.server start'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
@@ -322,8 +342,9 @@ tmuxc(){
   fi
 }
 
-export PATH=/usr/local/bin/npm:$PATH
+# export PATH=/usr/local/bin/npm:$PATH
+export PATH=/Users/bryan/.npm:$PATH
 export PATH=/Users/bryan/.node/bin:$PATH
 
-source ~/.git-prompt/git-prompt.sh
+source ~/.git-prompt.sh
 PS1='\[\e[1;33m\]\w\[\e[0;39m\]\n\[\e[1;32m\]\u\[\e[0;39m\]\[\e[0;39m\]\[\e[1;35m\]$(__git_ps1 " (%s)")\[\e[0;39m\]\[\e[0;39m\] '
