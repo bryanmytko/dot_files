@@ -1,5 +1,5 @@
 " ========================================================================
-" I took some of this from Ben Orenstein (https://github.com/r00k/dotfiles)
+" I took a bunch of this from Ben Orenstein (https://github.com/r00k/dotfiles)
 " ========================================================================
 
 " ========================================================================
@@ -17,7 +17,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails.git'
 Plugin 'rust-lang/rust.vim'
-Plugin 'elixir-lang/vim-elixir'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'skalnik/vim-vroom'
@@ -26,6 +25,8 @@ Plugin 'godlygeek/tabular'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+
+Plugin 'elixir-lang/vim-elixir'
 
 call vundle#end()
 filetype plugin indent on
@@ -54,7 +55,11 @@ map <Leader>sc :sp db/schema.rb<cr>
 map <Leader>cb :!cargo build<cr>
 map <Leader>cr :!cargo run<cr>
 map <Leader>mr :!mocha<cr>
+map <leader>rb :!ruby %<cr>
+map <Leader>rn :call RenameFile()<cr>
 nmap <Leader>s :source ~/.vimrc<cr>
+nnoremap <leader>p :set invpaste paste?<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rename Current File (thanks Gary Bernhardt)
@@ -68,7 +73,6 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-map <Leader>rn :call RenameFile()<cr>
 
 function! OpenFactoryFile()
   if filereadable("test/factories.rb")
@@ -87,16 +91,17 @@ hi MatchParen cterm=none ctermbg=black ctermfg=yellow
 
 " Basic visual settings
 syntax on
-set t_Co=256
-set background=dark
-set colorcolumn=80
-set number
-set tabstop=2
-set shiftwidth=2
-set smartindent
 set autoindent
+set background=dark
+set backspace=2
+set colorcolumn=80
 set expandtab
 set hlsearch
+set number
+set shiftwidth=2
+set smartindent
+set t_Co=256
+set tabstop=2
 
 " Handle ugly whitespace
 set list listchars=tab:>-,trail:•,precedes:<,extends:>
@@ -128,9 +133,6 @@ if version >= 700
   au InsertEnter * hi StatusLine ctermfg=226 ctermbg=232
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=232
 endif
-
-" Paste-mode toggle
-nnoremap <leader>p :set invpaste paste?<CR>
 
 " $ lsof -wni tcp:3000
 " $ kill -9 PID
