@@ -29,6 +29,8 @@ Plugin 'mxw/vim-jsx'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'tomlion/vim-solidity'
 
+Plugin 'vim-syntastic/syntastic'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -82,6 +84,12 @@ function! OpenFactoryFile()
     execute ":sp spec/factories.rb"
   end
 endfunction
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " Make it more obvious which paren I'm on
 hi MatchParen cterm=none ctermbg=black ctermfg=yellow
@@ -137,3 +145,15 @@ endif
 
 " $ lsof -wni tcp:3000
 " $ kill -9 PID
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_javascript_checkers = ['jcsc']
+let g:syntastic_es6_checkers = ['jcsc']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
