@@ -23,7 +23,7 @@ Plugin 'skalnik/vim-vroom'
 Plugin 'tComment'
 Plugin 'godlygeek/tabular'
 
-Plugin 'pangloss/vim-javascript'
+Plugin 'isRuslan/vim-es6'
 Plugin 'mxw/vim-jsx'
 
 Plugin 'elixir-lang/vim-elixir'
