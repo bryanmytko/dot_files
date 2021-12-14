@@ -1,8 +1,4 @@
 " ========================================================================
-" I took a bunch of this from Ben Orenstein (https://github.com/r00k/dotfiles)
-" ========================================================================
-
-" ========================================================================
 " Vundle
 " ========================================================================
 
@@ -14,22 +10,40 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails.git'
-Plugin 'rust-lang/rust.vim'
-
+" Utility
 Plugin 'kien/ctrlp.vim'
-Plugin 'skalnik/vim-vroom'
 Plugin 'tComment'
 Plugin 'godlygeek/tabular'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'w0rp/ale'
 
-Plugin 'isRuslan/vim-es6'
+" Ruby
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'skalnik/vim-vroom'
+
+" Rails
+Plugin 'tpope/vim-rails.git'
+
+" Rust
+Plugin 'rust-lang/rust.vim'
+
+" Python
+Plugin 'vim-python/python-syntax'
+
+" Javascript
+Plugin 'pangloss/vim-javascript'
+
+" JSX
 Plugin 'mxw/vim-jsx'
 
+" Elixir
 Plugin 'elixir-lang/vim-elixir'
+
+" Solidity
 Plugin 'tomlion/vim-solidity'
 
-Plugin 'vim-syntastic/syntastic'
+" Go
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 filetype plugin indent on
@@ -63,10 +77,10 @@ map <Leader>rn :call RenameFile()<cr>
 nmap <Leader>s :source ~/.vimrc<cr>
 nnoremap <leader>p :set invpaste paste?<CR>
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ========================================================================
 " Rename Current File (thanks Gary Bernhardt)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ========================================================================
+
 function! RenameFile()
   let old_name = expand('%')
   let new_name = input('New file name: ', expand('%'), 'file')
@@ -85,12 +99,6 @@ function! OpenFactoryFile()
   end
 endfunction
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
 " Make it more obvious which paren I'm on
 hi MatchParen cterm=none ctermbg=black ctermfg=yellow
 
@@ -103,7 +111,7 @@ syntax on
 set autoindent
 set background=dark
 set backspace=2
-set colorcolumn=80
+set colorcolumn=100
 set expandtab
 set hlsearch
 set number
@@ -111,12 +119,19 @@ set shiftwidth=2
 set smartindent
 set t_Co=256
 set tabstop=2
+set noeb vb t_vb=
 
 " Handle ugly whitespace
-set list listchars=tab:>-,trail:•,precedes:<,extends:>
+" set list listchars=tab:>-,trail:•,precedes:<,extends:>
+" set list listchars=trail:•
+" set listchars=tab:␉·
+"
+" set tabstop=4 shiftwidth=4 expandtab
+
+autocmd BufEnter *.go set ai sw=4 ts=4 sta et fo=croql
 
 " Railscast theme
-colorscheme railscasts
+" colorscheme railscasts
 
 " Bars
 highlight clear SignColumn
@@ -146,14 +161,23 @@ endif
 " $ lsof -wni tcp:3000
 " $ kill -9 PID
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-let g:syntastic_javascript_checkers = ['jcsc']
-let g:syntastic_es6_checkers = ['jcsc']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
+nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
