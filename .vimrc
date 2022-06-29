@@ -1,85 +1,48 @@
-" ========================================================================
-" Vundle
-" ========================================================================
+call plug#begin()
 
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
 " Utility
-Plugin 'kien/ctrlp.vim'
-Plugin 'tComment'
-Plugin 'godlygeek/tabular'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'w0rp/ale'
+Plug 'kien/ctrlp.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'godlygeek/tabular'
+Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 
 " Ruby
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'skalnik/vim-vroom'
+Plug 'vim-ruby/vim-ruby'
+Plug 'skalnik/vim-vroom'
 
 " Rails
-Plugin 'tpope/vim-rails.git'
+Plug 'tpope/vim-rails'
 
 " Rust
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " Python
-Plugin 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax'
 
 " Javascript
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 
 " JSX
-Plugin 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 
 " Elixir
-Plugin 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir'
 
 " Solidity
-Plugin 'tomlion/vim-solidity'
+Plug 'tomlion/vim-solidity'
 
 " Go
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
-" ========================================================================
-" Mappings
-" ========================================================================
-
-" Important
 let mapleader = ','
 :imap jj <ESC>
 
-" Leader
-map <Leader>ac :sp app/controllers/application_controller.rb<cr>
-map <Leader>vc :Vcontroller<cr>
-map <Leader>vm :Vmodel<cr>
-map <Leader>vv :Vview<cr>
-map <Leader>vu :AV<CR> " view unit test
-map <Leader>vf :Vfunctional<cr>
-map <Leader>bi :!bundle install<cr>
-map <Leader>w <C-w>w " move vim window
-map <Leader>sa mmggVG"*y`m " select all
-map <Leader>f :call OpenFactoryFile()<CR>
-map <Leader>i mmgg=G`m " indent, wow
-map <Leader>sc :sp db/schema.rb<cr>
-map <Leader>cb :!cargo build<cr>
-map <Leader>cr :!cargo run<cr>
-map <Leader>mr :!mocha<cr>
-map <leader>rb :!ruby %<cr>
 map <Leader>rn :call RenameFile()<cr>
-nmap <Leader>s :source ~/.vimrc<cr>
-nnoremap <leader>p :set invpaste paste?<CR>
-
-" ========================================================================
-" Rename Current File (thanks Gary Bernhardt)
-" ========================================================================
 
 function! RenameFile()
   let old_name = expand('%')
@@ -91,20 +54,7 @@ function! RenameFile()
   endif
 endfunction
 
-function! OpenFactoryFile()
-  if filereadable("test/factories.rb")
-    execute ":sp test/factories.rb"
-  else
-    execute ":sp spec/factories.rb"
-  end
-endfunction
-
-" Make it more obvious which paren I'm on
 hi MatchParen cterm=none ctermbg=black ctermfg=yellow
-
-" ========================================================================
-" Display
-" ========================================================================
 
 " Basic visual settings
 syntax on
@@ -120,18 +70,6 @@ set smartindent
 set t_Co=256
 set tabstop=2
 set noeb vb t_vb=
-
-" Handle ugly whitespace
-" set list listchars=tab:>-,trail:•,precedes:<,extends:>
-" set list listchars=trail:•
-" set listchars=tab:␉·
-"
-" set tabstop=4 shiftwidth=4 expandtab
-
-autocmd BufEnter *.go set ai sw=4 ts=4 sta et fo=croql
-
-" Railscast theme
-" colorscheme railscasts
 
 " Bars
 highlight clear SignColumn
@@ -158,9 +96,6 @@ if version >= 700
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=232
 endif
 
-" $ lsof -wni tcp:3000
-" $ kill -9 PID
-
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -172,12 +107,3 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe = 'npm run lint --'
-
-nmap <F5> <Esc>:w<CR>:!clear;python %<CR>
