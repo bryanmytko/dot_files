@@ -2,6 +2,8 @@ call plug#begin()
 
 Plug 'gmarik/Vundle.vim'
 
+Plug 'gruvbox-community/gruvbox'
+
 " Utility
 Plug 'kien/ctrlp.vim'
 Plug 'tomtom/tcomment_vim'
@@ -43,6 +45,23 @@ let mapleader = ','
 :imap jj <ESC>
 
 map <Leader>rn :call RenameFile()<cr>
+map <Leader>ac :sp app/controllers/application_controller.rb<cr>                                    
+map <Leader>vc :Vcontroller<cr>                                                                     
+map <Leader>vm :Vmodel<cr>                                                                          
+map <Leader>vv :Vview<cr>                                                                           
+map <Leader>vu :AV<CR> " view unit test                                                             
+map <Leader>vf :Vfunctional<cr>                                                                     
+map <Leader>bi :!bundle install<cr>                                                                 
+map <Leader>w <C-w>w " move vim window                                                              
+map <Leader>sa mmggVG"*y`m " select all                                                             
+map <Leader>f :call OpenFactoryFile()<CR>                                                           
+map <Leader>i mmgg=G`m " indent, wow                                                                
+map <Leader>sc :sp db/schema.rb<cr>                                                                 
+map <Leader>cb :!cargo build<cr>                                                                    
+map <Leader>cr :!cargo run<cr>                                                                      
+map <Leader>mr :!mocha<cr>                                                                          
+map <leader>rb :!ruby %<cr>                                                                         
+nmap <Leader>s :source ~/.vimrc<cr>                                                                 
 
 function! RenameFile()
   let old_name = expand('%')
@@ -55,6 +74,8 @@ function! RenameFile()
 endfunction
 
 hi MatchParen cterm=none ctermbg=black ctermfg=yellow
+
+colorscheme gruvbox
 
 " Basic visual settings
 syntax on
