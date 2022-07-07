@@ -2,7 +2,8 @@ call plug#begin()
 
 Plug 'gmarik/Vundle.vim'
 
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
+Plug 'chriskempson/base16-vim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
@@ -86,7 +87,7 @@ endfunction
 
 hi MatchParen cterm=none ctermbg=black ctermfg=yellow
 
-colorscheme gruvbox
+" colorscheme base16-default-dark
 
 " Basic visual settings
 syntax on
@@ -263,4 +264,3 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-EOF
