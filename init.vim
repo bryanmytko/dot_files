@@ -266,8 +266,14 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 -- vim.api.nvim_set_keymap("n", "<C-t>", "<cmd>lua require('telescope.builtin').git_files()<cr>", { noremap = true })
 
-require'telescope'.setup({
-  defaults = {
-    file_ignore_patterns = { "^./.git/", "^node_modules/", "^vendor/" },
-  }
-})
+require "telescope".setup(
+    {
+        defaults = {
+            file_ignore_patterns = {"^./.git/", "node_modules/*", "^vendor/"}
+        }
+    }
+)
+EOF
+
+nnoremap <c-t> :lua require'telescope.builtin'.find_files{}<CR>
+nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references{ shorten_path = true }<CR>
