@@ -5,7 +5,9 @@ Plug 'gmarik/Vundle.vim'
 " Themes
 " Plug 'gruvbox-community/gruvbox'
 " Plug 'chriskempson/base16-vim'
-Plug 'EdenEast/nightfox.nvim'
+" Plug 'EdenEast/nightfox.nvim'
+Plug 'chriskempson/tomorrow-theme'
+
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
