@@ -40,3 +40,13 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- column lines
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg = 7, bg = "gray12" })
+  end,
+})
+
+opt.colorcolumn = "80"
