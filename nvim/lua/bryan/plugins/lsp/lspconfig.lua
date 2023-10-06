@@ -96,7 +96,7 @@ return {
       on_attach = on_attach,
     })
 
-    lspconfig["clang"].setup({})
+    lspconfig["clangd"].setup({})
 
     -- configure typescript server with plugin
     typescript.setup({
