@@ -115,6 +115,9 @@ return {
       server = {
         capabilities = capabilities,
         on_attach = on_attach,
+        handlers = {
+          ["textDocument/publishDiagnostics"] = handlers.tsserverPublishDiagnostics,
+        },
       },
     })
 
