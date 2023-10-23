@@ -51,8 +51,7 @@ return {
             callback = function()
               vim.lsp.buf.format({
                 filter = function(client)
-                  print("client", client.name)
-                  --  only use null-ls for formatting instead of lsp server
+                  --  only use eslint for formatting instead of lsp server
                   return client.name == "eslint"
                 end,
                 bufnr = bufnr,
