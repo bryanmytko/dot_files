@@ -4,15 +4,19 @@ return {
   config = function()
     -- import null-ls plugin
     local null_ls = require("null-ls")
-
     local null_ls_utils = require("null-ls.utils")
 
-    -- for conciseness
     local formatting = null_ls.builtins.formatting -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
     -- to setup format on save
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+    local root_has_file = function(files)
+      return function(utils)
+        return utils.root_has_file(files)
+      end
+    end
 
     -- configure null_ls
     null_ls.setup({
@@ -28,7 +32,12 @@ return {
         formatting.stylua, -- lua formatter
         diagnostics.eslint_d.with({ -- js/ts linter
           condition = function(utils)
-            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+            local eslint_root_files = { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+            local prettier_root_files = { ".prettierrc", ".prettierrc.js", ".prettierrc.json" }
+            local has_eslint = root_has_file(eslint_root_files)(utils)
+            local has_prettier = root_has_file(prettier_root_files)(utils)
+
+            return has_eslint -- and not has_prettier
           end,
         }),
       },
@@ -42,8 +51,9 @@ return {
             callback = function()
               vim.lsp.buf.format({
                 filter = function(client)
+                  print("client", client.name)
                   --  only use null-ls for formatting instead of lsp server
-                  return client.name == "null-ls"
+                  return client.name == "eslint"
                 end,
                 bufnr = bufnr,
               })

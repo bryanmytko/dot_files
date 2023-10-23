@@ -23,6 +23,7 @@ return {
         "clangd",
         "cssls",
         "emmet_ls",
+        "eslint",
         "graphql",
         "html",
         "lua_ls",
