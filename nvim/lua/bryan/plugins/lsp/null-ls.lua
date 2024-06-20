@@ -1,76 +1,66 @@
-local null_ls = require("null-ls")
-
 return {
   "jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
-  null_ls.setup({
-    sources = {
-      null_ls.builtins.diagnostics.eslint_d.with({
-        filter = function(diagnostic)
-          return not string.find(diagnostic.code or "", "typescript-eslint", 1, true)
-        end,
-      }),
-    },
-  })
-  -- event = { "BufReadPre", "BufNewFile" },
-  -- config = function()
-  --   -- import null-ls plugin
-  --   local null_ls = require("null-ls")
-  --   local null_ls_utils = require("null-ls.utils")
-  --
-  --   local formatting = null_ls.builtins.formatting -- to setup formatters
-  --   local diagnostics = null_ls.builtins.diagnostics -- to setup linters
-  --
-  --   -- to setup format on save
-  --   local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-  --
-  --   local root_has_file = function(files)
-  --     return function(utils)
-  --       return utils.root_has_file(files)
-  --     end
-  --   end
+  event = { "BufReadPre", "BufNewFile" },
+  config = function()
+    -- import null-ls plugin
+    local null_ls = require("null-ls")
+    local null_ls_utils = require("null-ls.utils")
+
+    local formatting = null_ls.builtins.formatting -- to setup formatters
+    local diagnostics = null_ls.builtins.diagnostics -- to setup linters
+
+    -- to setup format on save
+    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+    local root_has_file = function(files)
+      return function(utils)
+        return utils.root_has_file(files)
+      end
+    end
 
     -- configure null_ls
-    -- null_ls.setup({
-    --   -- add package.json as identifier for root (for typescript monorepos)
-    --   root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
-    --   -- setup formatters & linters
-    --   sources = {
-    --     --  to disable file types use
-    --     --  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
-    --     formatting.prettier.with({
-    --       extra_filetypes = { "svelte" },
-    --     }), -- js/ts formatter
-    --     formatting.stylua, -- lua formatter
-    --     diagnostics.eslint_d.with({ -- js/ts linter
-    --       condition = function(utils)
-    --         local eslint_root_files = { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
-    --         local prettier_root_files = { ".prettierrc", ".prettierrc.js", ".prettierrc.json" }
-    --         local has_eslint = root_has_file(eslint_root_files)(utils)
-    --         local has_prettier = root_has_file(prettier_root_files)(utils)
-    --
-    --         return has_eslint -- and not has_prettier
-    --       end,
-    --     }),
-    --   },
+    null_ls.setup({
+      -- add package.json as identifier for root (for typescript monorepos)
+      root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
+      -- setup formatters & linters
+      sources = {
+        --  to disable file types use
+        --  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
+        formatting.prettier.with({
+          extra_filetypes = { "svelte" },
+        }), -- js/ts formatter
+        formatting.stylua, -- lua formatter
+        diagnostics.eslint_d.with({ -- js/ts linter
+          condition = function(utils)
+            -- local eslint_root_files = { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+            local eslint_root_files = {}
+            local prettier_root_files = { ".prettierrc", ".prettierrc.js", ".prettierrc.json" }
+            local has_eslint = root_has_file(eslint_root_files)(utils)
+            local has_prettier = root_has_file(prettier_root_files)(utils)
+
+            return has_eslint -- and not has_prettier
+          end,
+        }),
+      },
       -- configure format on save
-      -- on_attach = function(current_client, bufnr)
-      --   if current_client.supports_method("textDocument/formatting") then
-      --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      --     vim.api.nvim_create_autocmd("BufWritePre", {
-      --       group = augroup,
-      --       buffer = bufnr,
-      --       callback = function()
-      --         vim.lsp.buf.format({
-      --           filter = function(client)
-      --             --  only use eslint for formatting instead of lsp server
-      --             -- return client.name == "eslint"
-      --           end,
-      --           bufnr = bufnr,
-      --         })
-      --       end,
-      --     })
-      --   end
-      -- end,
-    -- })
-  -- end,
+      on_attach = function(current_client, bufnr)
+        if current_client.supports_method("textDocument/formatting") then
+          vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format({
+                filter = function(client)
+                  --  only use eslint for formatting instead of lsp server
+                  return client.name == "null-ls"
+                end,
+                bufnr = bufnr,
+              })
+            end,
+          })
+        end
+      end,
+    })
+  end,
 }

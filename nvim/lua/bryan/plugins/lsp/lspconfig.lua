@@ -115,14 +115,26 @@ return {
       server = {
         capabilities = capabilities,
         on_attach = on_attach,
-        handlers = {
-          ["textDocument/publishDiagnostics"] = handlers.tsserverPublishDiagnostics,
-        },
       },
     })
 
     -- configure css server
     lspconfig["cssls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    -- configure ruby
+    -- require("lspconfig").ruby_lsp.setup({})
+    lspconfig["rubocop"].setup({
+      cmd = { "rvm", ".", "do", "rubocop", "--lsp" },
+    })
+
+    -- lspconfig["sorbet"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    -- })
+    lspconfig.solargraph.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
